@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@EnableTransactionManagement
-@EnableJpaRepositories
+//@EnableTransactionManagement
+//@EnableJpaRepositories
 public class Application {
 
     public static void main(String[] args) throws Exception {
