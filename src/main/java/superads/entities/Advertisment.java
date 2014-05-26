@@ -1,4 +1,4 @@
-package entities;
+package superads.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class Advertisment {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="ads_gen")
-    @SequenceGenerator(name="ads_gen", sequenceName="ads_id_seq")
+    @SequenceGenerator(name="ads_gen", sequenceName="ads_id_seq",allocationSize = 1)
     private Integer id;
 
     @Column
@@ -28,8 +28,8 @@ public class Advertisment {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @ManyToMany(mappedBy = "advertisments", cascade = CascadeType.ALL)
-    private List<Category> categories = new ArrayList<>();
+/*    @ManyToMany(mappedBy = "advertisments", cascade = CascadeType.ALL)
+    private List<Category> categories = new ArrayList<>();*/
 
 
     public Advertisment() {}
@@ -79,11 +79,11 @@ public class Advertisment {
         this.user = user;
     }
 
-    public List<Category> getCategories() {
+    /*public List<Category> getCategories() {
         return categories;
     }
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
-    }
+    }*/
 }
