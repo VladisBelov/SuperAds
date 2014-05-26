@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<body>
+
+<form action="#" th:action="@{/}" th:object="${form}" method="post">
+    <table>
+        <tr>
+            <td>title:</td>
+            <td><input type="text" th:field="*{title}" /></td>
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title Error</td>
+        </tr>
+        <tr>
+            <td>body:</td>
+            <td><input type="text" th:field="*{body}" /></td>
+            <td th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Name Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+
+</html>
