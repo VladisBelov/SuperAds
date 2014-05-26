@@ -27,6 +27,8 @@ public class WelcomeController {
 
     @RequestMapping(value="/")
     public String index() {
+
+
          return "index";
     }
 
