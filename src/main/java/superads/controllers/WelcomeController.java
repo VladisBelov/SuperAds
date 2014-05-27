@@ -1,5 +1,7 @@
 package superads.controllers;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import superads.entities.Advertisment;
 import superads.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import superads.repositories.AdvertismentRepository;
 import superads.repositories.UserRepository;
 
 import javax.validation.Valid;
@@ -25,9 +28,18 @@ public class WelcomeController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value="/")
-    public String index() {
+    @Autowired
+    private AdvertismentRepository advertismentRepository;
 
+    @RequestMapping(value="/about")
+    public String about() {
+        return "about";
+    }
+
+    @RequestMapping(value="/")
+    public String welcome(Model model) {
+
+        model.addAttribute("ads", advertismentRepository.findAll());
 
          return "index";
     }
@@ -35,28 +47,32 @@ public class WelcomeController {
     /**
      * Welcome page
      */
-    @RequestMapping(value="/users", method = RequestMethod.GET)
-    public String index(Model model) {
+    @RequestMapping(value="/add_advertisment", method = RequestMethod.GET)
+    public String newAdvertisment(Model model) {
 
-        log.log(Level.WARNING, "DADADADADA");
-
-        model.addAttribute("user", new User());
-        return "form";
+        model.addAttribute("ad", new Advertisment());
+        return "advertismentForm";
     }
 
-    /**
-     * Welcome page
-     */
-    @RequestMapping(value="/users", method = RequestMethod.POST)
-    public String add(@Valid @ModelAttribute("user") User form, BindingResult bindingResult) {
+
+    @RequestMapping(value="/add_advertisment", method = RequestMethod.POST)
+    public String newAdvertisment(@Valid @ModelAttribute("ad") Advertisment ad, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "form";
+            return "advertismentForm";
         }
 
-        System.out.println(form);
+        advertismentRepository.save(ad);
 
-        return "index";
+        return "redirect:/";
+    }
+
+    @RequestMapping(value="/delete_advertisment", method = RequestMethod.GET)
+    public String deleteAdvertisment(@RequestParam("id") Long id) {
+
+        advertismentRepository.delete(id);
+
+        return "redirect:/";
     }
 
 }

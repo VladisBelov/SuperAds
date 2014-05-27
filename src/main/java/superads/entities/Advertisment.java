@@ -1,6 +1,9 @@
 package superads.entities;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,11 +17,13 @@ public class Advertisment {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="ads_gen")
     @SequenceGenerator(name="ads_gen", sequenceName="ads_id_seq",allocationSize = 1)
-    private Integer id;
+    private Long id;
 
+    @NotEmpty
     @Column
     private String title;
 
+    @NotEmpty
     @Column(columnDefinition = "TEXT")
     private String content;
 
@@ -39,11 +44,11 @@ public class Advertisment {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

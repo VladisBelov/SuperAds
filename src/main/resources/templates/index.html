@@ -9,11 +9,22 @@
 
 <div class="container">
 
-    <div class="starter-template">
+    <div class="row col-md-8 col-md-offset-2">
+    <h2>Объявления (всего в базе <span th:text="${#lists.size(ads)}"/>) </h2>
+        <a href="/add_advertisment" class="btn btn-primary">Добавить</a>
+    </div>
 
-hello  !!! !!
+
+    <div data-th-each="ad : ${ads}" class="row col-md-8 col-md-offset-2">
+              <h3 > <span th:text="${ad.title}"/>
+                  <a th:href="@{/delete_advertisment(id=${ad.id})}" class="btn btn-warning btn-xs">удалить</a>
+              </h3>
+        <p class="text-info" th:text=" ${#calendars.format(ad.date,'dd MMMM yyyy')}"/>
+              <p th:utext="${#strings.replace( ad.content, T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}"/>
 
     </div>
+
+
 </div>
 
 <div th:include="_layout :: foot"></div>
