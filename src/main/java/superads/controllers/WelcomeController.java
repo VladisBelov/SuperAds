@@ -25,16 +25,20 @@ public class WelcomeController {
      */
     private static Logger log = Logger.getLogger("WelcomeController");
 
+
     @Autowired
     private UserRepository userRepository;
 
+
     @Autowired
     private AdvertismentRepository advertismentRepository;
+
 
     @RequestMapping(value="/about")
     public String about() {
         return "about";
     }
+
 
     @RequestMapping(value="/")
     public String welcome(Model model) {
@@ -44,9 +48,7 @@ public class WelcomeController {
          return "index";
     }
 
-    /**
-     * Welcome page
-     */
+
     @RequestMapping(value="/add_advertisment", method = RequestMethod.GET)
     public String newAdvertisment(Model model) {
 
