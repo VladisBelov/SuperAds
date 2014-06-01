@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
 
@@ -29,6 +30,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Главная</a></li>
                     <li><a href="/about">О Проекте</a></li>
+                    <li> <a th:inline="text" href="/login?logout">[[${#httpServletRequest.remoteUser}]]!</a> ,
+                     </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -39,7 +42,8 @@
 
 
 <div th:fragment="foot">
-        <br/>
+
+    <br/>
     <footer style="text-align:center; padding-top:20px; border-top:1px solid #eee">
         <p>&copy; 2014 SuperAds</p>
     </footer>

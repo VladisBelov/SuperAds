@@ -14,6 +14,9 @@ public class User {
     @Column(name="`email`", nullable = false, length = 40)
     private String email;
 
+    @Column
+    private String password;
+
     public User() {}
 
     public User(String email) {
@@ -42,4 +45,11 @@ public class User {
     }
 
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
