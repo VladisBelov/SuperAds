@@ -1,4 +1,4 @@
-package superads.controllers;
+package superads.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import java.util.Collection;
 
 @Configuration
 @EnableWebMvcSecurity
-public class SecurityController extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
     UserRepository userRepository;
@@ -33,9 +33,11 @@ public class SecurityController extends WebSecurityConfigurerAdapter{
                 .anyRequest()
                 .authenticated();
 
+        http.logout().logoutUrl("/logout");
+
         http.formLogin()
             .loginPage("/login")
-            .permitAll().and().logout().permitAll();
+            .permitAll();
     }
 
     @Override

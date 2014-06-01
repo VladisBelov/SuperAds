@@ -30,7 +30,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Главная</a></li>
                     <li><a href="/about">О Проекте</a></li>
-                    <li> <a th:inline="text" href="/login?logout">[[${#httpServletRequest.remoteUser}]]!</a> ,
+                    <li> <a th:inline="text" href="/logout">[[${#httpServletRequest.remoteUser }]]!</a>
                      </li>
                 </ul>
             </div><!--/.nav-collapse -->
