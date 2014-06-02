@@ -10,6 +10,15 @@
 
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet" />
+    <style type="text/css">
+        #footer {
+        position:absolute;
+        bottom: 0;
+        width:100%;
+        left:0;
+        text-align:center;
+        }
+    </style>
 </head>
 <body>
 
@@ -29,7 +38,9 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Главная</a></li>
+                    <li><a href="/reg">Регистрация</a></li>
                     <li><a href="/about">О Проекте</a></li>
+
                     <li> <a th:inline="text" href="/logout">[[${#httpServletRequest.remoteUser }]]!</a>
                      </li>
                 </ul>
@@ -41,10 +52,10 @@
 </div>
 
 
-<div th:fragment="foot">
+<div th:fragment="foot" >
 
     <br/>
-    <footer style="text-align:center; padding-top:20px; border-top:1px solid #eee">
+    <footer style="text-align:center; padding-top:20px; border-top:1px solid #eee" id="footer">
         <p>&copy; 2014 SuperAds</p>
     </footer>
 </div>

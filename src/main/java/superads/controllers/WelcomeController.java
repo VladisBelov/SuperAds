@@ -80,4 +80,25 @@ public class WelcomeController {
         return "login";
     }
 
+    @RequestMapping(value="/reg", method = RequestMethod.GET)
+    public String newUser(Model model) {
+
+        model.addAttribute("reg", new User());
+        return "reg";
+    }
+
+
+    @RequestMapping(value="/reg", method = RequestMethod.POST)
+    public String newUser(@Valid @ModelAttribute("reg") User reg, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "reg";
+        }
+
+        userRepository.save(reg);
+
+        return "redirect:/";
+    }
+
+
 }
