@@ -6,22 +6,6 @@ import org.springframework.util.DigestUtils;
 import javax.persistence.*;
 import java.io.UnsupportedEncodingException;
 
-import org.springframework.web.bind.annotation.RequestParam;
-import superads.entities.Advertisment;
-import superads.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import superads.repositories.AdvertismentRepository;
-import superads.repositories.UserRepository;
-
-import javax.validation.Valid;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Entity
 @Table(schema="public", name="user")
