@@ -38,11 +38,19 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Главная</a></li>
-                    <li><a href="/reg">Регистрация</a></li>
+                    <li th:if="${#authorization.expression('!isAuthenticated()')}">
+                        <a href="/reg">Регистрация</a>
+                    </li>
                     <li><a href="/about">О Проекте</a></li>
-
-                    <li> <a th:inline="text" href="/logout">[[${#httpServletRequest.remoteUser }]]!</a>
-                     </li>
+                    <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
+                        <!--<a href="/login" th:href="@{/login}">Sign in</a>-->
+                    <!--</li>-->
+                    <li th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a href="/logout" th:href="@{/logout}">Выход</a>
+                    </li>
+                    <li th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a th:inline="text">[[${#httpServletRequest.remoteUser }]]</a>
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

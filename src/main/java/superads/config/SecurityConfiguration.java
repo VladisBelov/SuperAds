@@ -1,7 +1,9 @@
 package superads.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import superads.entities.User;
+import superads.repositories.AdvertismentRepository;
 import superads.repositories.UserRepository;
 
 import java.util.ArrayList;
@@ -24,6 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    AdvertismentRepository advertismentRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
         http.formLogin()
             .loginPage("/login")
-            .permitAll();
+                .permitAll();
     }
 
     @Override
@@ -60,8 +66,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 return user;
             }
 
-        });
+        }).passwordEncoder(passEncoder());
+    }
 
-
+    @Bean
+    public Md5PasswordEncoder passEncoder(){
+        return new Md5PasswordEncoder();
     }
 }

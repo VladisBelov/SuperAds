@@ -1,6 +1,8 @@
 package superads.entities;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
+import superads.repositories.UserRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +15,8 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Advertisment {
 
+//    @Autowired
+//    UserRepository userRepository;
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="ads_gen")

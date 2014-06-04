@@ -1,7 +1,11 @@
 package superads.entities;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.util.DigestUtils;
+import superads.repositories.AdvertismentRepository;
 
 import javax.persistence.*;
 import java.io.UnsupportedEncodingException;
@@ -63,7 +67,12 @@ public class User {
 
     public void setPassword(String password) {
 
-        this.password = password;
+        this.password = passEncoder().encodePassword(password, null);
 
+    }
+
+    @Bean
+    public Md5PasswordEncoder passEncoder(){
+        return new Md5PasswordEncoder();
     }
 }

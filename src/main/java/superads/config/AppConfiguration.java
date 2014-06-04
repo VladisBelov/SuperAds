@@ -12,7 +12,7 @@ public class AppConfiguration {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
         dataSource.setDriverClass(org.postgresql.Driver.class);
         dataSource.setUsername("postgres");
-        dataSource.setPassword("1111");
+        dataSource.setPassword("root");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/SuperAds");
         return dataSource;
     }

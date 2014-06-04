@@ -1,5 +1,6 @@
 package superads.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 import superads.entities.Advertisment;
 import superads.entities.User;
@@ -61,6 +62,8 @@ public class WelcomeController {
         if (bindingResult.hasErrors()) {
             return "advertismentForm";
         }
+
+        ad.setUser(userRepository.findOneByEmail(SecurityContextHolder.getContext().getAuthentication().getName()));
 
         advertismentRepository.save(ad);
 

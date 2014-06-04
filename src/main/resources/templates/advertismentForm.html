@@ -14,6 +14,12 @@
     <h2>Создать объявление</h2>
     <br/>
 
+    <div class="container">
+
+        <h4 th:inline="text" id="user">From user [[${#httpServletRequest.getUserPrincipal().getName() }]]</h4>
+        </div>
+
+
 <form class="form" action="#" th:action="@{/add_advertisment}" th:object="${ad}" method="post">
     <div class="form-group">
         <label for="title">Заголовок</label>

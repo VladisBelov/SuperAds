@@ -21,6 +21,8 @@
               <h3 > <span th:text="${ad.title}"/>
                   <a th:href="@{/delete_advertisment(id=${ad.id})}" class="btn btn-warning btn-xs">удалить</a>
               </h3>
+        <!--<h3 > <span th:text="${ad.user}"/> </h3>-->
+        <label th:each="id,status : ${ad.user}" th:for="|id${status.index}|" th:text="'By '+${id.email}"></label>
         <p class="text-info" th:text=" ${#calendars.format(ad.date,'dd MMMM yyyy')}"/>
               <p th:utext="${#strings.replace( ad.content, T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}"/>
 
